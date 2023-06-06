@@ -19,7 +19,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return super.toString();
+		return "("+title+"/"+author+"/"+category+"/"+price+")";
 	}
 	
 	@Override
