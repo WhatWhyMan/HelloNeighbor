@@ -2,10 +2,10 @@ package com.kh.practice.list.library.model.vo;
 
 public class Book {
 
-	public String title;
-	public String author;
-	public String category;
-	public int price;
+	private String title;
+	private String author;
+	private String category;
+	private int price;
 	
 	public Book() {
 	}
