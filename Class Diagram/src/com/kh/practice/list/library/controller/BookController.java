@@ -11,10 +11,10 @@ public class BookController {
 	
 	public BookController() {
 		
-		bookList.add(new Book("ìë°”ì˜ ì •ì„","ë‚¨ê¶ ì„±", "ê¸°íƒ€", 20000));
-		bookList.add(new Book("ì‰½ê²Œ ë°°ìš°ëŠ” ì•Œê³ ë¦¬ì¦˜","ë¬¸ë³‘ë¡œ", "ê¸°íƒ€", 15000));
-		bookList.add(new Book("ëŒ€í™”ì˜ ê¸°ìˆ ","ê°•ë³´ëŒ", "ì¸ë¬¸", 17500));
-		bookList.add(new Book("ì•” ì •ë³µê¸°","ë°•ì‹ ìš°", "ì˜ë£Œ", 21000));
+		bookList.add(new Book("ÀÚ¹ÙÀÇ Á¤¼®","³²±Ã ¼º", "±âÅ¸", 20000));
+		bookList.add(new Book("½±°Ô ¹è¿ì´Â ¾Ë°í¸®Áò","¹®º´·Î", "±âÅ¸", 15000));
+		bookList.add(new Book("´ëÈ­ÀÇ ±â¼ú","°­º¸¶÷", "ÀÎ¹®", 17500));
+		bookList.add(new Book("¾Ï Á¤º¹±â","¹Ú½Å¿ì", "ÀÇ·á", 21000));
 	}
 	
 	public void insertBook(Book bk) {
@@ -22,7 +22,7 @@ public class BookController {
 	}
 	
 	public ArrayList selectList() {
-		
+		return bookList;
 	}
 	
 	public ArrayList searchBook(String keyword) {
