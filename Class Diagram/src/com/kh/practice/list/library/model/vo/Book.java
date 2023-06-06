@@ -17,20 +17,22 @@ public class Book {
 		this.price = price;
 	}
 
+	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", category=" + category + ", price=" + price + "]";
+		return super.toString();
 	}
 	
+	@Override
 	public int hashCode() {
-		return hashCode();
+		return super.hashCode();
 	}
 	
-	public boolean equals() {
-		boolean result;
-		return result;
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 	
-	public int compareTo() {
+	private void compareTo() {
 	}
 				
 }
