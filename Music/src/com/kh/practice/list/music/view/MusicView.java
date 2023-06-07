@@ -43,10 +43,9 @@ public class MusicView {
 			try {
 				menu = Integer.parseInt(menuStr);	// 사용자 입력값을 menu에 대입.
 			} catch (NumberFormatException e) {
-				System.out.println("!!!문자는 입력될 수 없습니다.");
 			}
-			// 정상입력 경우.
 			switch(menu) {
+			// 정상입력 경우.
 			case 1:				addList();				break;
 			case 2:				addAtZero();			break;
 			case 3:				printAll();				break;
@@ -93,6 +92,7 @@ public class MusicView {
 		}
 	}
 	public void addAtZero() {
+		// ****** 첫 위치에 곡 추가 ******
 		System.out.println("****** 첫 위치에 곡 추가 ******");
 		System.out.println("곡명을 입력해주세요.");
 		String title = sc.nextLine();
@@ -120,13 +120,20 @@ public class MusicView {
 		if(result == null) {
 			System.out.println("검색한 곡이 없습니다.");
 		}	else {
-			System.out.printf("검색한 곡은 %s, %s 입니다.\n", result.getTitle(), result.getSinger());
+			System.out.printf("검색한 곡은 000(%s, %s) 입니다.\n", result.getTitle(), result.getSinger());
 		}
-			
 		System.out.println("");
 	}
 	public void removeMusic() {
-		// TODO
+		System.out.println("****** 특정 곡 삭제 ******");
+		System.out.println("삭제할 곡명을 입력해주세요.");
+		String title = sc.nextLine();
+		Music result = mc.removeMusic(title);
+		if(result == null) {
+			System.out.println("삭제할 곡이 없습니다.");
+		}	else {
+			System.out.printf("삭제한 곡은 000(%s, %s) 입니다.\n", result.getTitle(), result.getSinger());
+		}
 	}
 	public void setMusic() {
 		// TODO

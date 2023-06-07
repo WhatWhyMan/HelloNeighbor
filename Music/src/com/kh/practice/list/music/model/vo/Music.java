@@ -32,7 +32,7 @@ public class Music {
 
 	@Override
 	public String toString() {
-		return "title="+title+", singer="+singer+"]";
+		return "[title="+title+", singer="+singer+"]";
 	}
 
 	@Override
