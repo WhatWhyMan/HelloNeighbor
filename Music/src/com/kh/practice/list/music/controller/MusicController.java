@@ -1,9 +1,12 @@
 package com.kh.practice.list.music.controller;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -18,17 +21,18 @@ public class MusicController {
 	private List<Music>	list = new ArrayList<Music>();
 	
 	public MusicController() {
-	// list에 초기값 10곡 미리 입력해두기
-		list.add(new Music("aa", "aaa"));
-		list.add(new Music("bb", "bbb"));
-		list.add(new Music("cc", "ccc"));
-		list.add(new Music("dd", "ddd"));
-		list.add(new Music("ee", "eee"));
-		list.add(new Music("ff", "fff"));
-		list.add(new Music("gg", "ggg"));
-		list.add(new Music("hh", "hhh"));
-		list.add(new Music("ii", "iii"));
-		list.add(new Music("jj", "jjj"));
+		
+//		list에 초기값 10곡 미리 입력해두기
+//		list.add(new Music("aa", "aaa"));
+//		list.add(new Music("bb", "bbb"));
+//		list.add(new Music("cc", "ccc"));
+//		list.add(new Music("dd", "ddd"));
+//		list.add(new Music("ee", "eee"));
+//		list.add(new Music("ff", "fff"));
+//		list.add(new Music("gg", "ggg"));
+//		list.add(new Music("hh", "hhh"));
+//		list.add(new Music("ii", "iii"));
+//		list.add(new Music("jj", "jjj"));
 	}
 	
 	public int addList(Music music) {
@@ -164,26 +168,34 @@ public class MusicController {
 		
 		// filePath에 list의 Music 객체들을 저장함.
 		
-		FileOutputStream fos = null;
-		ObjectOutputStream oos = null;
-		BufferedOutputStream bos = null;
-		try {
-			 fos = new FileOutputStream(filepath);
-			 bos = new BufferedOutputStream(fos);
-			 oos = new ObjectOutputStream(bos);
+		try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filepath)));
+		 ){	
+			oos.writeObject(list);
+			oos.flush();
+			result = 1;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if(bos!=null) bos.close();
-				if(oos!=null) oos.close();
-				if(fos!=null) fos.close();
+		}
+		return result;
+	}
+	
+	public int loadFile(String filePath) {
+		int result = 0; // 0: 저장실패, 1: 저장성공
+		// music.txt 파일에서 읽어서 list에 추가하여 초기화 함.
+		try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filePath)));
+				 ){	
+				list = (List<Music>) ois.readObject();
+				System.out.println(list);
+				result = 1;
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 			}
-		}
 		return result;
 	}
 	
