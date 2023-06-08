@@ -56,12 +56,35 @@ public class MusicController {
 		return result;
 	}
 	public Music removeMusic(String title) {
-		// TODO
-		return null;
+		Music result = null;
+		for(Music vo : list) {
+			if(vo.getTitle().equals(title)) {
+				list.remove(vo);
+				result = vo;
+				break;
+			}
+		}
+		return result;
 	}
 	public Music setMusic(String title, Music music) {
-		// TODO
-		return null;
+		Music result = null;
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getTitle().equals(title)) {
+				result = list.get(i);
+				list.set(i,  music);
+				break;
+			}
+		}
+//		for(Music vo : list) {
+//			if(vo.getTitle().equals(title) ) {	// title이 같은 것을 찾아
+//				result = vo;					// 찾은 Music 객체 vo를 return 하면 됨.
+////				vo = music; - 불가능 / vo는 for문의 새로운 지역변수로 list와는 무관한 공간임.
+//				int findidx = list.indexOf(vo);
+//				list.set(findidx, music);
+//				break;
+//			}
+//		}
+		return result;
 	}
 	public int ascTitle() {
 		int result = 0;
