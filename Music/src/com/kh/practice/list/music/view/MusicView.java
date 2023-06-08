@@ -25,7 +25,7 @@ public class MusicView {
 //		9. 종료 // “종료” 출력 후 main()으로 리턴
 //		메뉴 번호 선택 : >> 입력 받음
 //		// 메뉴 화면 반복 실행 처리
-		int menu = 0;	// 비정상입력 경우를 위한 초기값.
+		int menu = -1;	// 비정상입력 경우를 위한 초기값.
 		do {
 			System.out.println("******* 메인 메뉴 *******");
 			System.out.println("1. 마지막 위치에 곡 추가");
@@ -37,15 +37,18 @@ public class MusicView {
 			System.out.println("7. 곡명 오름차순 정렬");
 			System.out.println("8. 가수명 내림차순 정렬");
 			System.out.println("9. 종료");
+			System.out.println("0. 파일에 저장");
+			
 			System.out.println("메뉴 번호 선택 : >>");
 			String menuStr = sc.nextLine();
-			menu = 0;	// 비정상입력 경우를 위한 초기값.
+			menu = -1;	// 비정상입력 경우를 위한 초기값.
 			try {
 				menu = Integer.parseInt(menuStr);	// 사용자 입력값을 menu에 대입.
 			} catch (NumberFormatException e) {
 			}
 			switch(menu) {
 			// 정상입력 경우.
+			case 0:				saveFile(); 			break;
 			case 1:				addList();				break;
 			case 2:				addAtZero();			break;
 			case 3:				printAll();				break;
@@ -169,5 +172,8 @@ public class MusicView {
 		} else {
 			System.out.println("정렬 실패");
 		}
+	}
+	public void saveFile() {
+		// TODO
 	}
 }

@@ -1,10 +1,17 @@
 package com.kh.practice.list.music.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import com.kh.practice.list.music.model.compare.AscTitle;
 import com.kh.practice.list.music.model.vo.Music;
 
 public class MusicController {
@@ -117,7 +124,7 @@ public class MusicController {
 				for(int j=0; j<list.size()-1-i; j++) {
 //					if(list.get(j).compareTo(nameArr[j+1]) > 0) {		//오름차순
 					if(list.get(j).getSinger().compareTo(list.get(j+1).getSinger())<0){		//내림차순
-						// 정렬기준은 list의 Music 형태의 객체 중 signer
+						// 정렬기준은 list의 Music 형태의 객체 중 signer 값으로 비교함.
 						// Swap // list에 있는 Music 형태의 객체를 swap
 						Music tmp = list.get(j);
 						list.set(j, list.get(j+1));
@@ -133,7 +140,16 @@ public class MusicController {
 	}
 	
 	public int ascTitle2() {
-		int result = 0;
+		int result = 1;
+//		ArrayList<Music> arrlist = new ArrayList<Music>();
+//		arrlist.add(new Music("a","vb"));
+//		list.removeAll(arrlist);
+		
+		try {
+			Collections.sort(list, new AscTitle());
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 		return result;
 	}
 	
@@ -143,4 +159,53 @@ public class MusicController {
 		return result;
 	}
 	
+	public int saveFile(String filepath) {
+		int result = 0; // 0 : 저장실패, 1 : 저장성공
+		
+		// filePath에 list의 Music 객체들을 저장함.
+		
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		BufferedOutputStream bos = null;
+		try {
+			 fos = new FileOutputStream(filepath);
+			 oos = new ObjectOutputStream(fos);
+			 bos = new BufferedOutputStream(oos);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(bos!=null) bos.close();
+				if(oos!=null) oos.close();
+				if(fos!=null) fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
