@@ -153,9 +153,21 @@ public class MusicView {
 		}
 	}
 	public void ascTitle() {
-		// TODO
+		System.out.println("****** 곡 명 오름차순 정렬 ******");
+		int result = mc.ascTitle2();
+		if(result >0) {
+			System.out.println("정렬 성공");
+		} else {
+			System.out.println("정렬 실패");
+		}
 	}
 	public void descSinger() {
-		// TODO
+		System.out.println("****** 가수 명 내림차순 정렬 ******");
+		int result = mc.descSinger2();
+		if(result >0) {
+			System.out.println("정렬 성공");
+		} else {
+			System.out.println("정렬 실패");
+		}
 	}
 }
